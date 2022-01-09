@@ -42,6 +42,12 @@ vocabulary.delete(`/:id([0-9]+)`, async (req, res) => {
   res.send("");
 });
 
+vocabulary.put(`/:id([0-9]+)`, async (req, res) => {
+  let id = req.params.id;
+  let result = await pool.editById(id);
+  res.send(result);
+ });
+
 vocabulary.post(`/`, async (req, res) => {
   try {
     const schema = {
