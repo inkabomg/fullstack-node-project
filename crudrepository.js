@@ -77,6 +77,18 @@ let connectionFunctions = {
       });
     } return new Promise(findBy);
   },
+
+  editById: (id, tag, english, finnish) => {
+    function editBy(resolve, reject) {
+      pool.query(`UPDATE vocabulary SET tag = ?, english = ?, finnish = ? WHERE id = ?`, id, tag, english, finnish, (err, vocabulary) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(vocabulary);
+        }
+      });
+    } return new Promise(editBy);
+  }
 };
 
 module.exports = connectionFunctions;
