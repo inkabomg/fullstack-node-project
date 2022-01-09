@@ -1,38 +1,60 @@
+
+body {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 0;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  background: #abd1c6;
+  box-shadow: 3px 3px 25px 1px #004643;
+  border-radius: 5px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.nav-item, .last-nav-item {
+  display: inline-block;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.nav-item a::after {
+  display: inline-block;
+  color: #004643;
+  content: '|';
+  font-size: 80%;
+  padding: 0 40px;
+  text-decoration: none;
 }
 
-.App-link {
-  color: #61dafb;
+a {
+  text-decoration: none;
+  color: #004643;
+  font-family:'Verdana';
+  text-shadow: 2px 2px #a9d4c7;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+h2 {
+  margin-top: 40px;
+  margin-bottom: 30px;
+  font-size: 25px;
+  font-family: 'Monaco';
+}
+
+p {
+  margin: 5px;
+  font-size: 15px;
+}
+
+p:first-of-type {
+  margin-top: 20px;
+}
+
+p.tag_text {
+  margin-bottom: -17px;
 }
