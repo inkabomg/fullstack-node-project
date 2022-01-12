@@ -25,12 +25,12 @@ function AdminComponent() {
     setTag(e.target.value);
   };
 
-  const handleEnglishChange = e => {
+  const handleEngChange = e => {
     // Set the English word value to anything we type in
     setEnglish(e.target.value);
   };
 
-  const handleFinnishChange = e => {
+  const handleFinChange = e => {
     // Set the Finnish word value to anything we type in
     setFinnish(e.target.value);
   };
@@ -68,6 +68,7 @@ function AdminComponent() {
     const updatedVocabulary = vocabulary.map(
       word => {
         if (word.id === updatedWord.id) {
+          console.log("moii")
           return updatedWord
         } else {return word}
       }
@@ -78,16 +79,16 @@ function AdminComponent() {
 return (
   <div>
     <form onSubmit={handleSubmit}>
-      <br></br>
+      <h4>Add a word pair</h4>
       <input placeholder="Tag" type="text" name="tag" value={tag} onChange={handleTagChange}/>
-      <input placeholder="Word in English" type="text" name="english" value={english} onChange={handleEnglishChange}/>
-      <input placeholder="Word in Finnish" type="text" name="finnish" value={finnish} onChange={handleFinnishChange}/>
+      <input placeholder="Word in English" type="text" name="english" value={english} onChange={handleEngChange}/>
+      <input placeholder="Word in Finnish" type="text" name="finnish" value={finnish} onChange={handleFinChange}/>
       <button type="submit">Add a word pair</button>
     </form>
     <br></br>
       {/* pass data down to the Vocabulary component where creating the table */}
       <Vocabulary vocabulary={vocabulary}
-      onUpdateWord={onUpdateWord}/>
+      onUpdateWord={onUpdateWord} />
     </div>
   );
 }
