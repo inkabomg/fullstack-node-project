@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 function UserComponent() {
   const [state, setState] = useState([]);
   const [title, setTitle] = useState("");
+  var [point, setPoint] = useState(0);
 
   // useEffect(() => {
   //   (async () => {
@@ -29,6 +30,8 @@ function UserComponent() {
           english={id.english}
           finnish={id.finnish}
           placeholder="Type Finnish translation"
+          correctInput={correctInput}
+          incorrectInput={incorrectInput}
         />
       )
     });
@@ -52,6 +55,8 @@ function UserComponent() {
           english={id.english}
           finnish={id.finnish}
           placeholder="Type Finnish translation"
+          correctInput={correctInput}
+          incorrectInput={incorrectInput}
         />
       )
     });
@@ -65,6 +70,17 @@ function UserComponent() {
       </TableHead>
     )
   }
+
+  function correctInput(a) {
+    point++;
+    console.log(a);
+    console.log("Your score is: " + point)
+  }
+
+  function incorrectInput(a) {
+    console.log("Wrong answer")
+  }
+
 
   return (
     <div>
