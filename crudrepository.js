@@ -36,7 +36,7 @@ let connectionFunctions = {
         if (err) {
           reject(err);
         } else {
-          resolve("New word added succesfully");
+          resolve("New word pair added succesfully");
         }
       });
     } return new Promise(add)
