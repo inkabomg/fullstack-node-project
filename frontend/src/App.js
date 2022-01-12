@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
-import UserComponent from './components/User';
-import AdminComponent from './components/Admin';
+import UserComponent from './User';
+import AdminComponent from './Admin';
 
 class App extends React.Component {
   render() {
