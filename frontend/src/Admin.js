@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Vocabulary from "./Vocabulary";
+import Button from '@mui/material/Button';
 
 function AdminComponent() {
   // Set state
@@ -63,6 +64,10 @@ function AdminComponent() {
     }
   };
 
+  // const updatedVocabulary = {
+  //   ...vocabulary,
+  //   [word.id] = updatedWord;
+  // }
   // Update vocabulary on page after edit
   function onUpdateWord(updatedWord) {
     const updatedVocabulary = vocabulary.map(
@@ -83,7 +88,7 @@ return (
       <input placeholder="Tag" type="text" name="tag" value={tag} onChange={handleTagChange}/>
       <input placeholder="Word in English" type="text" name="english" value={english} onChange={handleEngChange}/>
       <input placeholder="Word in Finnish" type="text" name="finnish" value={finnish} onChange={handleFinChange}/>
-      <button type="submit">Add a word pair</button>
+      <Button style={{ color:"#004643"}} size="small" type="submit">Add a word pair</Button>
     </form>
     <br></br>
       {/* pass data down to the Vocabulary component where creating the table */}

@@ -81,12 +81,16 @@ function UserComponent() {
     console.log("Wrong answer")
   }
 
+  function checkResults() {
+
+  }
+
 
   return (
     <div>
       <h2>Learn Finnish!</h2>
-      <Button onClick={getEnglish} variant="contained" style={{margin:"20px"}}>Show words in English</Button>
-      <Button onClick={getFinnish} variant="contained" style={{margin:"20px"}}>Show words in Finnish</Button>
+      <Button onClick={getEnglish} variant="contained" size="small" style={{marginBottom:"20px", marginRight:"10px", background:"#a9d4c7"}}>Show words in English</Button>
+      <Button onClick={getFinnish} variant="contained" size="small" style={{marginBottom:"20px", background:"#a9d4c7"}}>Show words in Finnish</Button>
       <div className="list">
         <TableContainer>
           <Table sx={{ maxWidth: 450 }}>
@@ -94,7 +98,7 @@ function UserComponent() {
             <TableBody>{state}</TableBody>
           </Table>
         </TableContainer>
-        <Button variant="contained" style={{margin:"20px"}}>Check results</Button>
+        <Button variant="contained" size="small" style={{marginTop:"20px", background:"#a9d4c7"}}>Check results</Button>
       </div>
     </div>
   );

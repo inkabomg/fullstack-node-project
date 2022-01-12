@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '@mui/material/Button';
 
 function Word( { word, word: { id, tag, english, finnish }, captureEdit, changeEditState, deleteWord }) {
 
@@ -9,11 +10,11 @@ function Word( { word, word: { id, tag, english, finnish }, captureEdit, changeE
       <td>{english}</td>
       <td>{finnish}</td>
       {/* // TODO: edit and delete */}
-      <td><button onClick={() => {
+      <td><Button variant="contained" size="small" style={{marginTop:"5px", background:"#a9d4c7"}} onClick={() => {
                     captureEdit(word);
                     changeEditState(word)
-                  }}>Edit</button></td>
-      <td><button onClick={() => deleteWord(word.id)}>Delete</button></td>
+                  }}>Edit</Button></td>
+      <td><Button variant="contained" size="small" style={{marginTop:"5px", background:"#a9d4c7"}} onClick={() => deleteWord(word.id)}>Delete</Button></td>
     </tr>
   )
 }

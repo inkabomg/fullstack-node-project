@@ -2,6 +2,12 @@ import React, {useState, useEffect} from 'react'
 import Word from './Word'
 import EditWord from './EditWord'
 import "./Vocabulary.css"
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 
 function Vocabulary({ vocabulary, onUpdateWord }) {
   // state for conditional render of edit form
@@ -77,7 +83,7 @@ function Vocabulary({ vocabulary, onUpdateWord }) {
     })
   };
 
-  // create a table (HTML tag is table) into which the data gets pushed
+  // // create a tableinto which the data gets pushed
   return (
     <div>
       {isEditing?
@@ -88,20 +94,20 @@ function Vocabulary({ vocabulary, onUpdateWord }) {
             handleFinChange={handleFinChange}
             handleWordUpdate={handleWordUpdate}
           />) : null}
-    <table>
-      {/* // thead = table header where columns go (th), as well as a table body
-      (tbody) where the rows of data will go (tr) */}
-        <thead>
-          <tr>
-            <th>Tag</th>
-            <th>English</th>
-            <th>Finnish</th>
-            <th>Modify word</th>
-            <th>Delete word</th>
-          </tr>
-        </thead>
-        <tbody>
-          {/* iterate through the vocabulary array and render a unique Word component for each word object in the array */}
+    <TableContainer>
+      <Table sx={{ maxWidth: 450 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Tag</TableCell>
+            <TableCell>English</TableCell>
+            <TableCell>Finnish</TableCell>
+            <TableCell>Modify word</TableCell>
+            <TableCell>Delete word</TableCell>
+          </TableRow>
+        </TableHead>
+          <TableBody>
+          {/* iterate through the vocabulary array and render a unique
+          Word component for each word object in the array */}
           { vocabulary.map(word =>
             <Word
               key={word.id}
@@ -109,11 +115,16 @@ function Vocabulary({ vocabulary, onUpdateWord }) {
               captureEdit={captureEdit}
               changeEditState={changeEditState}
               deleteWord={deleteWord}
-            />) }
-        </tbody>
-      </table>
-    </div>
-  )
+            />)}
+            <TableRow>
+              <TableCell>{vocabulary.english}</TableCell>
+              <TableCell>{vocabulary.finnish}</TableCell>
+            </TableRow>
+        </TableBody>
+      </Table>
+      </TableContainer>
+      </div>
+  );
 }
 
 export default Vocabulary;
