@@ -1,13 +1,13 @@
 import React from 'react'
 
-function EditWord({ editForm, handleWordUpdate, handleChange }) {
+function EditWord({ editForm, handleWordUpdate, updatedWord, handleTagChange, handleEngChange, handleFinChange }) {
     let { id, tag, english, finnish } = editForm
 
 // PATCH/PUT (??? which one works better) request; calls handleWordUpdate to push changes to the page
     function handleEditForm(e) {
         e.preventDefault();
         fetch(`http://localhost:8080/vocabulary/${id}`, {
-            method: "PUT",
+            method: "PATCH",
             headers: {
                 "Content-Type" : "application/json"
             },
@@ -21,12 +21,12 @@ function EditWord({ editForm, handleWordUpdate, handleChange }) {
 
     return (
         <div>
-            <h4>Edit Word</h4>
+            <h4>Edit word(s)</h4>
             <form onSubmit={handleEditForm}>
-                <input placeholder="Tag" type="text" name="tag" value={tag} onChange={handleChange}/>
-                <input placeholder="Word in English" type="text" name="english" value={english} onChange={handleChange}/>
-                <input placeholder="Word in Finnish" type="text" name="finnish" value={finnish} onChange={handleChange}/>
-                <button type="submit">Submit Changes</button>
+                <input placeholder="Tag" type="text" name="tag" value={tag} onChange={handleTagChange}/>
+                <input placeholder="Word in English" type="text" name="english" value={english} onChange={handleEngChange}/>
+                <input placeholder="Word in Finnish" type="text" name="finnish" value={finnish} onChange={handleFinChange}/>
+                <button onClick={() => {handleWordUpdate(updatedWord)}} type="submit">Submit changes</button>
             </form>
             <br></br>
         </div>

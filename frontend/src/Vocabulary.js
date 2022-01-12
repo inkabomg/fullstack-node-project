@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Word from './Word'
 import EditWord from './EditWord'
 import "./Vocabulary.css"
@@ -6,26 +6,46 @@ import "./Vocabulary.css"
 function Vocabulary({ vocabulary, onUpdateWord }) {
   // state for conditional render of edit form
   const [isEditing, setIsEditing] = useState(false);
+  const [state, setState] = useState([]);
   // state for edit form inputs
   const [editForm, setEditForm] = useState({
-    id: "",
     tag: "",
     english: "",
     finnish: ""
   });
 
+  useEffect(() => {
+    fetch("http://localhost:8080/vocabulary/")
+      .then(resp => resp.json())
+      .then(data => setState(data)) // set data to state
+  }, []);
+
   // when PATCH request happens; auto-hides the form, pushes changes to display
   function handleWordUpdate(updatedWord) {
-      setIsEditing(false);
+    setIsEditing(false);
     onUpdateWord(updatedWord);
     console.log(updatedWord)
   };
 
   // capture user input in edit form inputs
-  function handleChange(e) {
+  function handleTagChange(e) {
     setEditForm({
     ...editForm,
-    [e.target.name]: e.target.value
+    tag: e.target.value
+    })
+  };
+
+  function handleEngChange(e) {
+    setEditForm({
+    ...editForm,
+    english: e.target.value
+    })
+  };
+
+  function handleFinChange(e) {
+    setEditForm({
+    ...editForm,
+    finnish: e.target.value
     })
   };
 
@@ -39,11 +59,23 @@ function Vocabulary({ vocabulary, onUpdateWord }) {
     console.log(word)
   }
 
-// capture the customer you wish to edit, set to state
+// capture the word you wish to edit, set to state
   function captureEdit(clickedWord) {
     let filtered = vocabulary.filter(word => word.id === clickedWord.id)
     setEditForm(filtered[0])
   }
+
+  function deleteWord(id) {
+    const removed = [...state].filter(word => word.id !== id);
+    setState(removed);
+    fetch(`http://localhost:8080/vocabulary/` + id, {
+      method: "DELETE",
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+    })
+  };
 
   // create a table (HTML tag is table) into which the data gets pushed
   return (
@@ -51,7 +83,9 @@ function Vocabulary({ vocabulary, onUpdateWord }) {
       {isEditing?
           (<EditWord
             editForm={editForm}
-            handleChange={handleChange}
+            handleTagChange={handleTagChange}
+            handleEngChange={handleEngChange}
+            handleFinChange={handleFinChange}
             handleWordUpdate={handleWordUpdate}
           />) : null}
     <table>
@@ -69,12 +103,13 @@ function Vocabulary({ vocabulary, onUpdateWord }) {
         <tbody>
           {/* iterate through the vocabulary array and render a unique Word component for each word object in the array */}
           { vocabulary.map(word =>
-                <Word
-                  key={word.id}
-                  word={word}
-                  captureEdit={captureEdit}
-                  changeEditState={changeEditState}
-                />) }
+            <Word
+              key={word.id}
+              word={word}
+              captureEdit={captureEdit}
+              changeEditState={changeEditState}
+              deleteWord={deleteWord}
+            />) }
         </tbody>
       </table>
     </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Word({word, word:{id, tag, english, finnish}, captureEdit, changeEditState}) {
+function Word( { word, word: { id, tag, english, finnish }, captureEdit, changeEditState, deleteWord }) {
 
   return (
     <tr key={id}>
@@ -13,7 +13,7 @@ function Word({word, word:{id, tag, english, finnish}, captureEdit, changeEditSt
                     captureEdit(word);
                     changeEditState(word)
                   }}>Edit</button></td>
-      <td><button>Delete</button></td>
+      <td><button onClick={() => deleteWord(word.id)}>Delete</button></td>
     </tr>
   )
 }
