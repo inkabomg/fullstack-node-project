@@ -1,21 +1,46 @@
-import React from 'react'
-import Button from '@mui/material/Button';
+import React from "react";
+import Button from "@mui/material/Button";
+import TableCell from "@mui/material/TableCell";
+import TableRow from "@mui/material/TableRow";
 
-function Word( { word, word: { id, tag, english, finnish }, captureEdit, changeEditState, deleteWord }) {
-
+function Word({
+  word,
+  word: { id, tag, english, finnish },
+  captureEdit,
+  changeEditState,
+  deleteWord,
+}) {
   return (
-    <tr key={id}>
+    <TableRow key={id}>
       {/* // The <td> HTML element defines a cell of a table that contains data */}
-      <td>{tag}</td>
-      <td>{english}</td>
-      <td>{finnish}</td>
+      <TableCell>{tag}</TableCell>
+      <TableCell>{english}</TableCell>
+      <TableCell>{finnish}</TableCell>
       {/* // TODO: edit and delete */}
-      <td><Button variant="contained" size="small" style={{marginTop:"5px", background:"#a9d4c7"}} onClick={() => {
-                    captureEdit(word);
-                    changeEditState(word)
-                  }}>Edit</Button></td>
-      <td><Button variant="contained" size="small" style={{marginTop:"5px", background:"#a9d4c7"}} onClick={() => deleteWord(word.id)}>Delete</Button></td>
-    </tr>
-  )
+      <TableCell>
+        <Button
+          variant="contained"
+          size="small"
+          style={{ marginTop: "5px", background: "#a9d4c7" }}
+          onClick={() => {
+            captureEdit(word);
+            changeEditState(word);
+          }}
+        >
+          Edit
+        </Button>
+      </TableCell>
+      <TableCell>
+        <Button
+          variant="contained"
+          size="small"
+          style={{ marginTop: "5px", background: "#a9d4c7" }}
+          onClick={() => deleteWord(word.id)}
+        >
+          Delete
+        </Button>
+      </TableCell>
+    </TableRow>
+  );
 }
 export default Word;
