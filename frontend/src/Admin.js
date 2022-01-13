@@ -3,7 +3,7 @@ import Vocabulary from "./Vocabulary";
 import Button from "@mui/material/Button";
 import Input from "@mui/material/Input";
 
-function AdminComponent() {
+function AdminComponent(props) {
   // Set state
   const [vocabulary, setVocabulary] = useState([]);
   const [tag, setTag] = useState("");
@@ -37,8 +37,7 @@ function AdminComponent() {
     setFinnish(e.target.value);
   };
 
-  function handleSubmit(e) {
-    // e.preventDefault(); // will refresh page
+  function handleSubmit() {
     if (!tag || !english || !finnish) {
       // A pop up window
       alert("Cannot submit an empty word pair");
@@ -65,15 +64,19 @@ function AdminComponent() {
     }
   }
 
-  // const updatedVocabulary = {
-  //   ...vocabulary,
-  //   [word.id] = updatedWord;
-  // }
-  // Update vocabulary on page after edit
+  // PUT request
   function onUpdateWord(updatedWord) {
+    fetch(`http://localhost:8080/vocabulary/${updatedWord.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedWord),
+    }).then((resp) => resp.json());
+
+    // Update vocabulary on page after edit
     const updatedVocabulary = vocabulary.map((word) => {
       if (word.id === updatedWord.id) {
-        console.log("moii");
         return updatedWord;
       } else {
         return word;
