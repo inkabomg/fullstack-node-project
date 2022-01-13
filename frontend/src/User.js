@@ -37,6 +37,8 @@ function UserComponent() {
     const table = state.map((id) => {
       return (
         <TableEng
+          // Assign a key to the list items inside
+          key={id.id}
           english={id.english}
           finnish={id.finnish}
           placeholder="Type Finnish translation"
@@ -69,6 +71,8 @@ function UserComponent() {
     const table = state.map((id) => {
       return (
         <TableFin
+          // Assign a key to the list items inside
+          key={id.id}
           english={id.english}
           finnish={id.finnish}
           placeholder="Type Finnish translation"
