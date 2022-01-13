@@ -85,6 +85,18 @@ function AdminComponent(props) {
     setVocabulary(updatedVocabulary);
   }
 
+  function deleteWord(id) {
+    const removed = [...vocabulary].filter((word) => word.id !== id);
+    setVocabulary(removed);
+    fetch(`http://localhost:8080/vocabulary/` + id, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -129,7 +141,11 @@ function AdminComponent(props) {
       </form>
       <br></br>
       {/* pass data down to the Vocabulary component where creating the table */}
-      <Vocabulary vocabulary={vocabulary} onUpdateWord={onUpdateWord} />
+      <Vocabulary
+        vocabulary={vocabulary}
+        onUpdateWord={onUpdateWord}
+        deleteWord={deleteWord}
+      />
     </div>
   );
 }
