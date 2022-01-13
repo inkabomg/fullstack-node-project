@@ -8,6 +8,7 @@ function Word({
   word: { id, tag, english, finnish },
   captureEdit,
   changeEditState,
+  deleteWord,
 }) {
   //const [state, setState] = useState([]);
 
