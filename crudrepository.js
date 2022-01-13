@@ -32,14 +32,19 @@ let connectionFunctions = {
 
   save: (input1, input2, input3) => {
     function add(resolve, reject) {
-      pool.query(`INSERT INTO vocabulary (tag, english, finnish) VALUES (?,?,?)`, [input1, input2, input3], (err) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve("New word pair added succesfully");
+      pool.query(
+        `INSERT INTO vocabulary (tag, english, finnish) VALUES (?,?,?)`,
+        [input1, input2, input3],
+        (err) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve("New word pair added succesfully");
+          }
         }
-      });
-    } return new Promise(add)
+      );
+    }
+    return new Promise(add);
   },
 
   findAll: () => {
@@ -51,44 +56,76 @@ let connectionFunctions = {
           resolve(vocabulary);
         }
       });
-    } return new Promise(find)
+    }
+    return new Promise(find);
   },
 
   deleteById: (id) => {
     function deleteBy(resolve, reject) {
-      pool.query(`DELETE FROM vocabulary WHERE id = ?`, id, (err, vocabulary) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(`Deleted word with id = ` + id, vocabulary);
+      pool.query(
+        `DELETE FROM vocabulary WHERE id = ?`,
+        id,
+        (err, vocabulary) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(`Deleted word with id = ` + id, vocabulary);
+          }
         }
-      });
-    } return new Promise(deleteBy)
+      );
+    }
+    return new Promise(deleteBy);
   },
 
   findById: (id) => {
     function findBy(resolve, reject) {
-      pool.query(`SELECT * FROM vocabulary WHERE id = ?`, id, (err, vocabulary) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(vocabulary);
+      pool.query(
+        `SELECT * FROM vocabulary WHERE id = ?`,
+        id,
+        (err, vocabulary) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(vocabulary);
+          }
         }
-      });
-    } return new Promise(findBy);
+      );
+    }
+    return new Promise(findBy);
   },
 
-  editById: (id, tag, english, finnish) => {
-    function editBy(resolve, reject) {
-      pool.query(`UPDATE vocabulary SET tag = ?, english = ?, finnish = ? WHERE id = ?`, id, tag, english, finnish, (err, vocabulary) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(vocabulary);
+  findByTag: (tag) => {
+    function findBy(resolve, reject) {
+      pool.query(
+        `SELECT * FROM vocabulary WHERE tag = "${tag}"`,
+        tag,
+        (err, vocabulary) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(vocabulary);
+          }
         }
-      });
-    } return new Promise(editBy);
-  }
+      );
+    }
+    return new Promise(findBy);
+  },
+
+  editById: (id, word) => {
+    function editBy(resolve, reject) {
+      pool.query(
+        `UPDATE vocabulary SET tag = "${word.tag}", english = "${word.english}", finnish = "${word.finnish}" WHERE id = ${id}`,
+        (err, vocabulary) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(vocabulary);
+          }
+        }
+      );
+    }
+    return new Promise(editBy);
+  },
 };
 
 module.exports = connectionFunctions;
