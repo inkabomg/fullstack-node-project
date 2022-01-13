@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 const vocabulary = express.Router();
 const Validator = require("jsonschema").Validator;
-const validator = new Validator;
+const validator = new Validator();
 
 // Error message for status 500
 const backendError = "Backend has made a mistake";
@@ -33,7 +33,21 @@ vocabulary.get(`/`, async (req, res) => {
 vocabulary.get(`/:id([0-9]+)`, async (req, res) => {
   let id = req.params.id;
   let resultId = await pool.findById(id);
-  res.send(resultId);
+  if (resultId.length === 0) {
+    res.send("No item with such id exists: " + id);
+  } else {
+    res.send(resultId);
+  }
+});
+
+vocabulary.get(`/:tag`, async (req, res) => {
+  let tag = req.params.tag;
+  let resultTag = await pool.findByTag(tag);
+  if (resultTag.length === 0) {
+    res.send("No item with such tag exists: " + tag);
+  } else {
+    res.send(resultTag);
+  }
 });
 
 vocabulary.delete(`/:id([0-9]+)`, async (req, res) => {
@@ -42,10 +56,14 @@ vocabulary.delete(`/:id([0-9]+)`, async (req, res) => {
   res.send("");
 });
 
-vocabulary.patch(`/:id([0-9]+)`, async (req, res) => {
-  let id = req.params.id;
-  let result = await pool.editById(id);
-  res.send(result);
+vocabulary.put("/:index([0-9]+)", async (req, res) => {
+  try {
+    let result = await pool.editById(req.params.index, req.body);
+    res.send(result);
+  } catch (err) {
+    res.statusCode = 404;
+    res.send(err);
+  }
 });
 
 vocabulary.post(`/`, async (req, res) => {
@@ -55,9 +73,9 @@ vocabulary.post(`/`, async (req, res) => {
       properties: {
         tag: { type: "string" },
         english: { type: "string" },
-        finnish: { type: "string" }
+        finnish: { type: "string" },
       },
-      require: ["tag", "english", "finnish"]
+      require: ["tag", "english", "finnish"],
     };
 
     const validation = validator.validate(req.body, schema);
