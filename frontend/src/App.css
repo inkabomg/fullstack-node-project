@@ -1,10 +1,11 @@
-
 body {
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 .App {
   text-align: center;
+  justify-content: center;
 }
 
 ul {
@@ -18,14 +19,15 @@ ul {
   border-radius: 5px;
 }
 
-.nav-item, .last-nav-item {
+.nav-item,
+.last-nav-item {
   display: inline-block;
 }
 
 .nav-item a::after {
   display: inline-block;
   color: #004643;
-  content: '|';
+  content: "|";
   font-size: 80%;
   padding: 0 40px;
   text-decoration: none;
@@ -34,16 +36,15 @@ ul {
 a {
   text-decoration: none;
   color: #004643;
-  font-family:'Verdana';
+  font-family: "Verdana";
   text-shadow: 2px 2px #a9d4c7;
 }
-
 
 h2 {
   margin-top: 40px;
   margin-bottom: 30px;
   font-size: 25px;
-  font-family: 'Monaco';
+  font-family: "Monaco";
 }
 
 p {
