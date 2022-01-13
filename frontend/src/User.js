@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import TableEng from "./TableEng";
 import TableFin from "./Table";
 import Table from "@mui/material/Table";
@@ -12,7 +12,7 @@ import Alert from "@mui/material/Alert";
 
 var point = 0;
 
-function UserComponent(props) {
+function UserComponent() {
   const [state, setState] = useState([]);
   const [title, setTitle] = useState("");
   const [finalScore, setFinalScore] = useState([]);
@@ -29,6 +29,9 @@ function UserComponent(props) {
   // }, []);
 
   async function getFinnish() {
+    // Set points back to 0
+    point = 0;
+    setFinalScore([]);
     const result = await fetch("http://localhost:8080/vocabulary/");
     const state = await result.json();
     const table = state.map((id) => {
@@ -58,6 +61,9 @@ function UserComponent(props) {
   }
 
   async function getEnglish() {
+    // Set points back to 0
+    point = 0;
+    setFinalScore([]);
     const result = await fetch(`http://localhost:8080/vocabulary/`);
     const state = await result.json();
     const table = state.map((id) => {
@@ -88,7 +94,6 @@ function UserComponent(props) {
 
   function correctInput(a) {
     point++;
-    console.log(a);
     console.log("Your score is: " + point);
   }
 
@@ -97,13 +102,13 @@ function UserComponent(props) {
   }
 
   function showScore() {
-    if (point === state.length[1]) {
+    if (point === state.length) {
       setFinalScore(
         <Alert style={{ maxWidth: 450, margin: "auto" }} severity="success">
           You got all the words correct!
         </Alert>
       );
-    } else if (point === 0 && state.length) {
+    } else if (point === 0) {
       setFinalScore(
         <Alert style={{ maxWidth: 450, margin: "auto" }} severity="error">
           You didn't get one word correct!
