@@ -9,7 +9,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 
-function Vocabulary({ vocabulary, onUpdateWord }) {
+function Vocabulary({ vocabulary, onUpdateWord, deleteWord }) {
   // state for conditional render of edit form
   const [isEditing, setIsEditing] = useState(false);
   // state for edit form inputs
@@ -110,6 +110,7 @@ function Vocabulary({ vocabulary, onUpdateWord }) {
                 word={word}
                 captureEdit={captureEdit}
                 changeEditState={changeEditState}
+                deleteWord={deleteWord}
               />
             ))}
             <TableRow
