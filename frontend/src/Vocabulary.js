@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Word from "./Word";
 import EditWord from "./EditWord";
 import "./Vocabulary.css";
@@ -12,25 +12,23 @@ import TableRow from "@mui/material/TableRow";
 function Vocabulary({ vocabulary, onUpdateWord }) {
   // state for conditional render of edit form
   const [isEditing, setIsEditing] = useState(false);
-  const [state, setState] = useState([]);
   // state for edit form inputs
   const [editForm, setEditForm] = useState({
+    id: "",
     tag: "",
     english: "",
     finnish: "",
   });
 
-  useEffect(() => {
-    fetch("http://localhost:8080/vocabulary/")
-      .then((resp) => resp.json())
-      .then((data) => setState(data)); // set data to state
-  }, []);
-
-  // when PATCH request happens; auto-hides the form, pushes changes to display
-  function handleWordUpdate(updatedWord) {
+  function handleWordUpdate() {
     setIsEditing(false);
+    const updatedWord = {
+      id: editForm.id,
+      tag: editForm.tag,
+      english: editForm.english,
+      finnish: editForm.finnish,
+    };
     onUpdateWord(updatedWord);
-    console.log(updatedWord);
   }
 
   // capture user input in edit form inputs
@@ -55,32 +53,19 @@ function Vocabulary({ vocabulary, onUpdateWord }) {
     });
   }
 
-  // needed logic for conditional rendering of the form - shows the word you want when you want them, and hides it when you don't
+  // Needed logic for conditional rendering of the form - shows the word you want when you want them, and hides it when you don't
   function changeEditState(word) {
     if (word.id === editForm.id) {
       setIsEditing((isEditing) => !isEditing); // hides the form
     } else if (isEditing === false) {
       setIsEditing((editing) => !editing); // shows the form
     }
-    console.log(word);
   }
 
-  // capture the word you wish to edit, set to state
+  // Capture the word to edit, set to state
   function captureEdit(clickedWord) {
     let filtered = vocabulary.filter((word) => word.id === clickedWord.id);
     setEditForm(filtered[0]);
-  }
-
-  function deleteWord(id) {
-    const removed = [...state].filter((word) => word.id !== id);
-    setState(removed);
-    fetch(`http://localhost:8080/vocabulary/` + id, {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    });
   }
 
   // // Create a table into which the data gets pushed
@@ -125,7 +110,6 @@ function Vocabulary({ vocabulary, onUpdateWord }) {
                 word={word}
                 captureEdit={captureEdit}
                 changeEditState={changeEditState}
-                deleteWord={deleteWord}
               />
             ))}
             <TableRow
