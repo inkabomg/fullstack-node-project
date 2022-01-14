@@ -41,7 +41,6 @@ function UserComponent() {
           key={id.id}
           english={id.english}
           finnish={id.finnish}
-          placeholder="Type Finnish translation"
           correctInput={correctInput}
           incorrectInput={incorrectInput}
         />
@@ -75,7 +74,6 @@ function UserComponent() {
           key={id.id}
           english={id.english}
           finnish={id.finnish}
-          placeholder="Type Finnish translation"
           correctInput={correctInput}
           incorrectInput={incorrectInput}
         />
