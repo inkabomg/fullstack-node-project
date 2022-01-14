@@ -16,6 +16,27 @@ Install npm packages
 
 ## Backend usage
 
+Create a .env file in the root directory. Add environment-specific variables on new lines in the form of NAME=VALUE. For example:
+```
+DB_HOST = mydb.tamk.fi
+
+DB_USER = userName
+
+DB_PASSWORD = password123
+
+DB_DB = database
+```
+process.env now has the keys and values you defined in your .env file.
+
+```
+const db = require('db')
+db.connect({
+  host: process.env.DB_HOST,
+  username: process.env.DB_USER,
+  password: process.env.DB_PASS
+})
+```
+
 Nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.
 
 Nodemon does not require any additional changes to your code or method of development. Nodemon is a replacement wrapper for node. To use nodemon, replace the word node on the command line when executing your script.
