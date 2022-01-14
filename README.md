@@ -7,5 +7,13 @@ This is a Backend Development course project work, a full stack application usin
 - Backend with Express/Node.js
 - MySQL Database which is accessed using mysql - module
 
-
-[![Backend Development - Project Work](https://imgur.com/a/h0H5Su1?)](https://www.youtube.com/watch?v=2u0KxLf4cBQ "Backend Development - Project Work")
+## Overview of the project
+<div align="center">
+  <p>(Click photo to open YouTube link)</p>
+  <a href="https://www.youtube.com/watch?v=2u0KxLf4cBQ">
+  <img 
+    src="https://imgur.com/ySGrRGS.png" 
+    alt="Backend Development - Project Work" 
+    style="width:80%; margin: auto;">
+  </a>
+</div>
