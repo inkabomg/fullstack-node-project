@@ -1,6 +1,5 @@
 const express = require("express");
 const pool = require("./crudrepository.js");
-// const mysql = require("mysql");
 const cors = require("cors");
 const app = express();
 const vocabulary = express.Router();
@@ -25,11 +24,13 @@ const server = app.listen(8080, () => {
   console.log(`Listening on port ${server.address().port}`);
 });
 
+// GET ALL
 vocabulary.get(`/`, async (req, res) => {
   let result = await pool.findAll();
   res.send(result);
 });
 
+// GET BY ID
 vocabulary.get(`/:id([0-9]+)`, async (req, res) => {
   let id = req.params.id;
   let resultId = await pool.findById(id);
@@ -40,6 +41,7 @@ vocabulary.get(`/:id([0-9]+)`, async (req, res) => {
   }
 });
 
+// GET BY TAG
 vocabulary.get(`/:tag`, async (req, res) => {
   let tag = req.params.tag;
   let resultTag = await pool.findByTag(tag);
@@ -50,12 +52,18 @@ vocabulary.get(`/:tag`, async (req, res) => {
   }
 });
 
+// DELETE BY ID
 vocabulary.delete(`/:id([0-9]+)`, async (req, res) => {
   let id = req.params.id;
-  await pool.deleteById(id);
-  res.send("");
+  let deleteId = await pool.deleteById(id);
+  if (deleteId.length === 0) {
+    res.send("No item with such id exists: " + id);
+  } else {
+    res.send(deleteId);
+  }
 });
 
+// PUT BY ID
 vocabulary.put("/:index([0-9]+)", async (req, res) => {
   try {
     let result = await pool.editById(req.params.index, req.body);
@@ -66,6 +74,7 @@ vocabulary.put("/:index([0-9]+)", async (req, res) => {
   }
 });
 
+// POST (Requires tag, english and finnish inputs)
 vocabulary.post(`/`, async (req, res) => {
   try {
     const schema = {
