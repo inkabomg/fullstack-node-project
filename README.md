@@ -43,6 +43,33 @@ db.connect({
 })
 ```
 
+Example of the data that will be included in the database:
+```sql
+CREATE TABLE vocabulary (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tag VARCHAR(10) NOT NULL,
+    english VARCHAR(20) NOT NULL,
+    finnish VARCHAR(20) NOT NULL,
+);
+```
+
+```html
+[
+  {
+    "id": 1,
+    "tag": "animals",
+    "english": "mouse",
+    "finnish": "hiiri"
+  },
+  {
+    "id": 2,
+    "tag": "colors",
+    "english": "purple",
+    "finnish": "violetti"
+  }
+]
+```
+
 ### Nodemon:
 
 Nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.
