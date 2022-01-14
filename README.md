@@ -8,4 +8,4 @@ This is a Backend Development course project work, a full stack application usin
 - MySQL Database which is accessed using mysql - module
 
 
-[![Backend Development - Project Work](https://imgur.com/a/h0H5Su1)](https://www.youtube.com/watch?v=2u0KxLf4cBQ "Backend Development - Project Work")
+[![Backend Development - Project Work](https://imgur.com/a/h0H5Su1?)](https://www.youtube.com/watch?v=2u0KxLf4cBQ "Backend Development - Project Work")
