@@ -5,6 +5,9 @@ The app contains two views, one for admin and one for end user. Admin can create
 
 <div align="center">
   <img src="https://imgur.com/Ea6Y7xP.png" width="45%"> <img src="https://imgur.com/8AwkVcP.png" width="46.4%">
+</div>
+<br>
+<div align="center">
   <img src="https://imgur.com/q2LsoYL.png" width="32%"> <img src="https://imgur.com/QaX5MSG.png" width="27%"> <img src="https://imgur.com/nXcx2mM.png" width="32%"> </div>
 
 ## Installation
