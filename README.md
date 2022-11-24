@@ -27,7 +27,7 @@ Through cloning with git:
 ### Start & watch 
 `npm start` or `yarn start` => _You can now view frontend in the browser. http://localhost:3000_
 
-## Backend (folder)
+## Backend
 ### Dotenv:
 
 Create a .env file in the root directory. Add environment-specific variables on new lines in the form of NAME=VALUE. For example:
