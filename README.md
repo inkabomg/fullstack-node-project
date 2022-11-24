@@ -12,19 +12,22 @@ The app contains two views, one for admin and one for end user. Admin can create
 
 ## Installation
 
+#### You need to download Node.js (runtime environment) onto your computer to work with this project: https://nodejs.org/en/
+
+
 Through cloning with git:
 
-`git clone https://github.com/inkabomg/fullstack-node-project.git`
+**Step 1:** Open CLI and paste following: `git clone https://github.com/inkabomg/fullstack-node-project.git`
 
-Install npm packages
+**Step 2:** Move into the project folder _"cd [folder structure]"_
 
-`npm install`
+**Step 3:** Install npm packages in both, backend and frontend folders -> `npm install`
 
-## Frontend
-### Start & watch
+## Frontend (folder)
+### Start & watch 
 `npm start` or `yarn start` => _You can now view frontend in the browser. http://localhost:3000_
 
-## Backend
+## Backend (folder)
 ### Dotenv:
 
 Create a .env file in the root directory. Add environment-specific variables on new lines in the form of NAME=VALUE. For example:
@@ -81,7 +84,7 @@ Nodemon does not require any additional changes to your code or method of develo
 
 Nodemon wraps your application, so you can pass all the arguments you would normally pass to your app:
 
-`nodemon index.js`
+(in **BACKEND**!) `nodemon index.js`
 
 =>
 ```node.js
@@ -101,14 +104,3 @@ This is a Backend Development course project work, a full stack application usin
 - Frontend with React
 - Backend with Express/Node.js
 - MySQL Database which is accessed using mysql - module
-
-## Overview of the project
-<div align="center">
-  <p>(Click photo to open YouTube link)</p>
-  <a href="https://www.youtube.com/watch?v=2u0KxLf4cBQ">
-  <img 
-    src="https://imgur.com/ySGrRGS.png" 
-    alt="Backend Development - Project Work" 
-    style="width:80%; margin: auto;">
-  </a>
-</div>
